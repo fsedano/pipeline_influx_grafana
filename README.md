@@ -22,7 +22,13 @@ The only requirement to run the setup is to have docker and docker-compose insta
 On the Cisco C9800 wireless controller, configure telemetry data:
 
 ```
-# TODO add telemetry config
+telemetry ietf subscription 0
+ encoding encode-kvgpb
+ filter xpath /wireless-access-point-oper:access-point-oper-data
+ source-address <public source address>
+ stream yang-push
+ update-policy periodic 1000
+ receiver ip address <public IP of pipeline> 57500 protocol grpc-tcp
 ```
 
 Once Docker and Docker-compose are installed, just bring up docker-compose:
@@ -78,3 +84,16 @@ docker-compose up -d --build pipeline
 ## Pipeline filters
 When pipeline receives gRPC data it runs it thru a filter, which is described via the JSON file `/data/metrics.json`. This file needs to match the data being received from the wireless controller.
 
+ *todo* describe metrics.json
+
+## Creating graph
+Once the containers are brought up, Grafana web interface can be accessed via port 3000 on the instance public IP.
+
+Use `admin / admin` as the initial user and password. Then, setup a data source as shown on the following capture, the important parameters are:
+- Type: influxdb
+- URL: http://influx:8086
+- Access: Server
+- Database: vwlcdata
+
+
+![Data source configuration](diagrams/datasource.png?raw=true "Data source")
