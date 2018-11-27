@@ -1,8 +1,11 @@
-This is a setup to perform real time visualisation and analysis of C9800 wireless controller telemetry data streaming.
+This is a setup to perform real time visualisation and analysis of C9800 wireless controller telemetry data streaming. It uses [dial-out](https://xrdocs.io/telemetry/blogs/2017-01-20-model-driven-telemetry-dial-in-or-dial-out/) telemetry to push a periodic stream of wireless operational data to an open source collector: [pipeline](https://developer.cisco.com/codeexchange/github/repo/cisco/bigmuddy-network-telemetry-pipeline/)
 
 
 ![General diagram](diagrams/general.png?raw=true "General network diagram")
 
+A number of different flows are possible, since pipeline is capable to export to a great variety of sources. On this particular demo, InfluxDB  + Grafana are used to display live data
+
+![Pipeline diagram](diagrams/pipeline.png?raw=true "Pipeline")
 
 The setup is packaged in 3 different Docker containers, which are brought together using docker-compose.
 Telemetry data from Cisco C9800 wireless controller is sent to [pipeline](https://developer.cisco.com/codeexchange/github/repo/cisco/bigmuddy-network-telemetry-pipeline/)
