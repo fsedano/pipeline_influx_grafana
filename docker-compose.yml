@@ -21,7 +21,14 @@ services:
                         - running_pipeline_data:/running_data
                 ports:
                         - "57500:57500"
+        yang-explorer:
+                image: hellt/yangexplorer-docker
+                volumes:
+                        - yangdata:/yang-explorer/server/data
+                ports:
+                        - "8088:8088"
 volumes:
         influxdb:
         pipeline_data:
         running_pipeline_data:
+        yangdata:
