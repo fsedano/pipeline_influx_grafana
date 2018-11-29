@@ -13,7 +13,7 @@ A number of different flows are possible, since pipeline is capable to export to
 
 The setup is packaged in 4 different Docker containers, which are brought together using docker-compose.
 
-![Composite diagram](diagrams/composite-internal1.png?raw=true "Composite diagram")
+![Composite diagram](diagrams/compose-internal1.png?raw=true "Composite diagram")
 
 
 Telemetry data from Cisco C9800 wireless controller is sent to [pipeline](https://developer.cisco.com/codeexchange/github/repo/cisco/bigmuddy-network-telemetry-pipeline/)
