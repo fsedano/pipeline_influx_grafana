@@ -38,11 +38,18 @@ On the Cisco C9800 wireless controller, configure telemetry data:
 ```
 telemetry ietf subscription 0
  encoding encode-kvgpb
- filter xpath /wireless-access-point-oper:access-point-oper-data
- source-address <public source address>
+ filter xpath /wireless-access-point-oper:access-point-oper-data/radio-oper-data
+ source-address 9.9.71.50
  stream yang-push
  update-policy periodic 1000
- receiver ip address <public IP of pipeline> 57500 protocol grpc-tcp
+ receiver ip address 9.9.71.130 57500 protocol grpc-tcp
+telemetry ietf subscription 1
+ encoding encode-kvgpb
+ filter xpath /wireless-access-point-oper:access-point-oper-data/ethernet-if-stats
+ source-address 9.9.71.50
+ stream yang-push
+ update-policy periodic 1000
+ receiver ip address 9.9.71.130 57500 protocol grpc-tcp
 ```
 
 Once Docker and Docker-compose are installed, just bring up docker-compose:
