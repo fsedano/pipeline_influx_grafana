@@ -43,6 +43,7 @@ telemetry ietf subscription 0
  stream yang-push
  update-policy periodic 1000
  receiver ip address 9.9.71.130 57500 protocol grpc-tcp
+ 
 telemetry ietf subscription 1
  encoding encode-kvgpb
  filter xpath /wireless-access-point-oper:access-point-oper-data/ethernet-if-stats
