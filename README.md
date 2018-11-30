@@ -111,11 +111,26 @@ When pipeline receives gRPC data it runs it thru a filter, which is described vi
 ## Creating graph
 Once the containers are brought up, Grafana web interface can be accessed via port 3000 on the instance public IP.
 
-Use `admin / admin` as the initial user and password. Then, setup a data source as shown on the following capture, the important parameters are:
+Use `admin / admin` as the initial user and password.
+
+
+### Datasource definition
+
+Setup a data source as shown on the following capture, the important parameters are:
 - Type: influxdb
 - URL: http://influx:8086
 - Access: Server
 - Database: vwlcdata
 
-
 ![Data source configuration](diagrams/datasource.png?raw=true "Data source")
+
+### Graph definition
+
+Once datasource is setup, you can define graphs using the interactive builder. An example can be found below:
+
+![Graph definition](diagrams/graph-definition-1.png?raw=true "Graph definition")
+
+This is the resulting graph output:
+
+![Graph example](diagrams/graph-example.png?raw=true "Graph example")
+
