@@ -7,7 +7,15 @@ A number of different flows are possible, since pipeline is capable to export to
 
 ![Pipeline diagram](diagrams/pipeline.png?raw=true "Pipeline")
 
-The setup is packaged in 3 different Docker containers, which are brought together using docker-compose.
+
+
+### Structure of docker composition
+
+The setup is packaged in 4 different Docker containers, which are brought together using docker-compose.
+
+![Composite diagram](diagrams/compose-internal1.png?raw=true "Composite diagram")
+
+
 Telemetry data from Cisco C9800 wireless controller is sent to [pipeline](https://developer.cisco.com/codeexchange/github/repo/cisco/bigmuddy-network-telemetry-pipeline/)
 
 Pipeline is configured to accept telemetry data using grpc and output two streams:
@@ -16,6 +24,9 @@ Raw 'tap' data, for debugging purposes
 [Influxdb](https://www.influxdata.com/time-series-platform/influxdb/) data output, filtered using the pipeline filter described on this guide.
 
 Another container runs [Grafana](https://grafana.com/) which consumes Influxdb data to produce the real time visualization.
+
+Also, a container for yang-explorer is present, so we can interactively browse the YANG model of the device. 
+In order to use the yang-explorer UI, we need to point our browser to the IP address of the docker-compose VM, port 8088, with a flash-enabled browser.
 
 ## Installation requirements
 The only requirement to run the setup is to have docker and docker-compose installed
@@ -27,11 +38,19 @@ On the Cisco C9800 wireless controller, configure telemetry data:
 ```
 telemetry ietf subscription 0
  encoding encode-kvgpb
- filter xpath /wireless-access-point-oper:access-point-oper-data
- source-address <public source address>
+ filter xpath /wireless-access-point-oper:access-point-oper-data/radio-oper-data
+ source-address 9.9.71.50
  stream yang-push
  update-policy periodic 1000
- receiver ip address <public IP of pipeline> 57500 protocol grpc-tcp
+ receiver ip address 9.9.71.130 57500 protocol grpc-tcp
+ 
+telemetry ietf subscription 1
+ encoding encode-kvgpb
+ filter xpath /wireless-access-point-oper:access-point-oper-data/ethernet-if-stats
+ source-address 9.9.71.50
+ stream yang-push
+ update-policy periodic 1000
+ receiver ip address 9.9.71.130 57500 protocol grpc-tcp
 ```
 
 Once Docker and Docker-compose are installed, just bring up docker-compose:
