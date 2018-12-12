@@ -99,7 +99,7 @@ To change pipeline configuration, from your repository, edit the file `pipeline/
 Once that file is update, stop and rebuild the pipeline container with
 
 ```
-docker-compose down pipeline
+docker-compose stop pipeline
 docker-compose up -d --build pipeline
 ```
 
