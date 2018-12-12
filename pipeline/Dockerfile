@@ -1,8 +1,11 @@
 FROM ubuntu:16.04
+RUN apt-get update && apt-get install -y influxdb-client vim
 RUN mkdir /pipeline
 COPY pipeline_data /pipeline
 COPY json /data
-COPY target/wait.sh /tmp
-COPY target/id_rsa* /tmp/
+WORKDIR /app
+COPY target/bootstrap.sh /app
+RUN chmod +x /app/bootstrap.sh
+COPY target/id_rsa* /app/
 WORKDIR /running_data
-CMD ["/bin/bash", "-c", "/pipeline/bin/pipeline -pem /tmp/id_rsa -config /pipeline/pipeline.conf_REWRITTEN > /tmp/salida.txt"]
+CMD ["/bin/bash", "-c", "/app/bootstrap.sh"]
