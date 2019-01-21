@@ -20,13 +20,30 @@
 			]
 		}
 	},
-       {
-               "basepath" : "Cisco-IOS-XE-wireless-access-point-oper:access-point-oper-data/ethernet-if-stats",
+   {
+           "basepath" : "Cisco-IOS-XE-wireless-access-point-oper:access-point-oper-data/ethernet-if-stats",
+           "spec" : {
+                   "fields" : [
+                           {"name" : "admin-state"},
+                           {"name" : "if-name", "tag" : true},
+                           {"name" : "rx-total-bytes"}
+                   ]
+           }
+   },
+   {
+               "basepath" : "Cisco-IOS-XE-wireless-client-oper:client-oper-data/traffic-stats",
                "spec" : {
                        "fields" : [
-                               {"name" : "admin-state"},
-                               {"name" : "if-name", "tag" : true},
-                               {"name" : "rx-total-bytes"}
+                               {"name" : "ms-mac-address", "tag": true},
+                               {"name": "bytes-rx"},
+                				{"name": "bytes-tx"},
+                				{"name": "data-retries"},
+                				{"name": "mic-mismatch"},
+                				{"name": "mic-missing"},
+                				{"name": "most-recent-rssi"},
+                				{"name": "most-recent-snr"},
+                				{"name": "pkts-rx"},
+                				{"name": "pkts-tx"}
                        ]
                }
        }

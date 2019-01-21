@@ -38,19 +38,12 @@ On the Cisco C9800 wireless controller, configure telemetry data:
 ```
 telemetry ietf subscription 0
  encoding encode-kvgpb
- filter xpath /wireless-access-point-oper:access-point-oper-data/radio-oper-data
+ filter xpath /wireless-client-oper:client-oper-data/traffic-stats
  source-address 9.9.71.50
  stream yang-push
  update-policy periodic 1000
  receiver ip address 9.9.71.130 57500 protocol grpc-tcp
  
-telemetry ietf subscription 1
- encoding encode-kvgpb
- filter xpath /wireless-access-point-oper:access-point-oper-data/ethernet-if-stats
- source-address 9.9.71.50
- stream yang-push
- update-policy periodic 1000
- receiver ip address 9.9.71.130 57500 protocol grpc-tcp
 ```
 
 Once Docker and Docker-compose are installed, just bring up docker-compose:
@@ -106,7 +99,61 @@ docker-compose up -d --build pipeline
 ## Pipeline filters
 When pipeline receives gRPC data it runs it thru a filter, which is described via the JSON file `/data/metrics.json`. This file needs to match the data being received from the wireless controller.
 
- *todo* describe metrics.json
+ On this example, we'll be plotting client stats (traffic, RSSI). The JSON filter needs to match the YANG data model, and is as follows:
+
+ ```
+[
+	{
+		"basepath" : "Cisco-IOS-XE-wireless-access-point-oper:access-point-oper-data/radio-oper-data",
+		"spec" : {
+			"fields" : [
+				{"name" : "radio-slot-id", "tag" : true},
+				{"name" : "radio-type"},
+				{"name" : "admin-state", "track" : true},
+				{"name" : "wtp-mac", "tag" : true},
+				{"name" : "phy-ht-cfg", 
+					"fields" : [
+						{"name" : "cfg-data", 
+							"fields" : [
+								{"name" : "chan-width"},
+								{"name" : "curr-freq"}
+							]
+						}
+					]
+				}
+			]
+		}
+	},
+   {
+           "basepath" : "Cisco-IOS-XE-wireless-access-point-oper:access-point-oper-data/ethernet-if-stats",
+           "spec" : {
+                   "fields" : [
+                           {"name" : "admin-state"},
+                           {"name" : "if-name", "tag" : true},
+                           {"name" : "rx-total-bytes"}
+                   ]
+           }
+   },
+   {
+               "basepath" : "Cisco-IOS-XE-wireless-client-oper:client-oper-data/traffic-stats",
+               "spec" : {
+                       "fields" : [
+                               {"name" : "ms-mac-address", "tag": true},
+                               {"name": "bytes-rx"},
+                				{"name": "bytes-tx"},
+                				{"name": "data-retries"},
+                				{"name": "mic-mismatch"},
+                				{"name": "mic-missing"},
+                				{"name": "most-recent-rssi"},
+                				{"name": "most-recent-snr"},
+                				{"name": "pkts-rx"},
+                				{"name": "pkts-tx"}
+                       ]
+               }
+       }
+]
+
+ ```
 
 ## Creating graph
 Once the containers are brought up, Grafana web interface can be accessed via port 3000 on the instance public IP.
@@ -132,5 +179,5 @@ Once datasource is setup, you can define graphs using the interactive builder. A
 
 This is the resulting graph output:
 
-![Graph example](diagrams/graph-example.png?raw=true "Graph example")
+![Client RSSI Graph](diagrams/graph-example-rssi.png?raw=true "Client RSSI graph")
 

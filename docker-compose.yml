@@ -14,7 +14,8 @@ services:
                 ports:
                         - "3000:3000"
         pipeline:
-                build: pipeline
+                #build: pipeline
+                image: fsedano/pipeline
                 volumes:
                         - pipeline_data:/data
                         - running_pipeline_data:/running_data
