@@ -181,3 +181,8 @@ This is the resulting graph output:
 
 ![Client RSSI Graph](diagrams/graph-example-rssi.png?raw=true "Client RSSI graph")
 
+## Changing controller config data from Dashboard
+
+It's also possible to change the controller configuration programatically from the dashboard. The buttons on this example dashboard will trigger a config change to the controller via RESTconf
+
+![Buttons](diagrams/dashboard-buttons.png?raw=true "Buttons")
