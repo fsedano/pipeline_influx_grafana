@@ -45,6 +45,29 @@ telemetry ietf subscription 0
  receiver ip address 9.9.71.130 57500 protocol grpc-tcp
  
 ```
+Then, enable restconf
+
+```
+ip ssh version 2
+aaa new-model
+aaa authorization exec default local
+username cisco privilege 15 password 0 cisco
+restconf
+ip http secure-server
+```
+```
+wireless profile policy my_policy
+ no shutdown
+
+wireless tag policy my_tag1
+wlan franssid policy my_policy
+
+ap 00a6.ca6c.d590
+policy-tag my_tag1
+
+ap f44e.0543.3454
+policy-tag my_tag1
+```
 
 Once Docker and Docker-compose are installed, just bring up docker-compose:
 
