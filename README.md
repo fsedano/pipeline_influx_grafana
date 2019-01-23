@@ -209,3 +209,66 @@ This is the resulting graph output:
 It's also possible to change the controller configuration programatically from the dashboard. The buttons on this example dashboard will trigger a config change to the controller via RESTconf
 
 ![Buttons](diagrams/dashboard-buttons.png?raw=true "Buttons")
+
+### Config change architecture
+
+Config change is implemented using several buttons on the dashboard, which when pressed will cause the browser to send a POST request to a custom application. The flow can be seen here
+
+![RESTConf](diagrams/restconf-diagram1.png?raw=true "RESTConf")
+
+The custom application listens for any of the following requests from the browser:
+
+ * /start_ap1
+ * /start_ap2
+ * /stop_ap1
+ * /stop_ap2
+
+ This application runs on a separate container and, when any of this REST calls is received, will do several operations towards the controller using RESTConf:
+
+ * Get current AP configuration (RESTConf GET)
+
+This is the URL sent to retrieve the current config
+
+```
+GET /restconf/data/Cisco-IOS-XE-wireless-ap-cfg:ap-cfg-data/ap-tags/ap-tag/
+```
+
+The reply we're getting is as follows:
+
+```
+{
+  "Cisco-IOS-XE-wireless-ap-cfg:ap-tag": [
+    {
+      "ap-mac": "00:a6:ca:6c:d5:90",
+      "policy-tag": "tag2"
+    },
+    {
+      "ap-mac": "f4:4e:05:43:34:54",
+      "policy-tag": "my_tag1"
+    }
+  ]
+}
+```
+
+ * Update config in memory
+
+ * Update the config on controller (RESTConf PATCH)
+
+ ```
+ PATCH /restconf/data/Cisco-IOS-XE-wireless-ap-cfg:ap-cfg-data/ap-tags/ap-tag/
+ {
+  "Cisco-IOS-XE-wireless-ap-cfg:ap-tag": [
+    {
+      "ap-mac": "00:a6:ca:6c:d5:90",
+      "policy-tag": "other-policy-tag"
+    },
+    {
+      "ap-mac": "f4:4e:05:43:34:54",
+      "policy-tag": "my_tag1"
+    }
+  ]
+}
+ ```
+
+At this point, controller config is updated.
+
