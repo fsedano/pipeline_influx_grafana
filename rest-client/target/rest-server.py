@@ -52,32 +52,32 @@ def post_util(ap, tag):
         return ret
 
 class startAP1(Resource):
-    def post(self)
+    def post(self):
         ap = "00:a6:ca:6c:d5:90"
         tag = "my_tag1"
         print("Start AP1: {}".format(ap))
-        post_util(ap, tag)
+        return post_util(ap, tag)
 
 class stopAP1(Resource):
-    def post(self)
+    def post(self):
         ap = "00:a6:ca:6c:d5:90"
         tag = "tag2"
         print("Stop AP1: {}".format(ap))
-        post_util(ap, tag)
+        return post_util(ap, tag):
 
 class startAP2(Resource):
-    def post(self)
+    def post(self):
         ap = "f4:4e:05:43:34:54"
         tag = "my_tag1"
         print("Start AP1: {}".format(ap))
-        post_util(ap, tag)
+        return post_util(ap, tag)
 
 class stopAP2(Resource):
-    def post(self)
+    def post(self):
         ap = "f4:4e:05:43:34:54"
         tag = "tag2"
         print("Stop AP1: {}".format(ap))
-        post_util(ap, tag)
+        return post_util(ap, tag)
 
 api.add_resource(startAP1, '/start_ap1')
 api.add_resource(stopAP1, '/stop_ap1')
