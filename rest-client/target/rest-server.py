@@ -33,13 +33,13 @@ class WLC:
         payload = requests.request("GET", self.url, headers=self.headers, verify=False)   
         print("Got config from Controller:")
         print(payload.text)
-        if False:
+        if True:
             print(f"Moving AP:{mac} to tag:{tag}")
             payload = self._change_policy_tag_payload(payload, mac, tag)
-            response = requests.request("PATCH", url, data=payload, headers=headers, verify=False)
+            response = requests.request("PATCH", self.url, data=payload, headers=self.headers, verify=False)
             print(response.text)
             print("Got config from Controller, after update:")
-            response = requests.request("GET", url, headers=self.headers, verify=False)
+            response = requests.request("GET", self.url, headers=self.headers, verify=False)
             print(response.text)
         return {'ok':True}
 
@@ -48,7 +48,7 @@ class startAP1(Resource):
         print("Start AP1")
         wlc = WLC("10.51.65.154")
         try:
-            ret = wlc.move_ap("aa:bb:cc:dd:ee:ff", "tag2")
+            ret = wlc.move_ap("00:a6:ca:6c:d5:90", "tag2")
         except ConnectionError:
             ret = {'failed': True}
         return ret
