@@ -43,17 +43,46 @@ class WLC:
             print(response.text)
         return {'ok':True}
 
-class startAP1(Resource):
-    def post(self):
-        print("Start AP1")
+def post_util(ap, tag):
         wlc = WLC("10.51.65.154")
         try:
-            ret = wlc.move_ap("00:a6:ca:6c:d5:90", "tag2")
+            ret = wlc.move_ap(ap, tag)
         except ConnectionError:
             ret = {'failed': True}
         return ret
 
+class startAP1(Resource):
+    def post(self)
+        ap = "00:a6:ca:6c:d5:90"
+        tag = "my_tag1"
+        print("Start AP1: {}".format(ap))
+        post_util(ap, tag)
+
+class stopAP1(Resource):
+    def post(self)
+        ap = "00:a6:ca:6c:d5:90"
+        tag = "tag2"
+        print("Stop AP1: {}".format(ap))
+        post_util(ap, tag)
+
+class startAP2(Resource):
+    def post(self)
+        ap = "f4:4e:05:43:34:54"
+        tag = "my_tag1"
+        print("Start AP1: {}".format(ap))
+        post_util(ap, tag)
+
+class stopAP2(Resource):
+    def post(self)
+        ap = "f4:4e:05:43:34:54"
+        tag = "tag2"
+        print("Stop AP1: {}".format(ap))
+        post_util(ap, tag)
+
 api.add_resource(startAP1, '/start_ap1')
+api.add_resource(stopAP1, '/stop_ap1')
+api.add_resource(startAP2, '/start_ap2')
+api.add_resource(stopAP2, '/stop_ap2')
 
 app.run(host='0.0.0.0', port='4000', debug=True)
 
