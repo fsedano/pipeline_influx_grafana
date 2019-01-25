@@ -13,3 +13,4 @@ RUN pip install flask flask_restful flask_cors requests
 WORKDIR /app
 COPY target/rest-server.py /app
 ENTRYPOINT [ "python", "rest-server.py" ]
+

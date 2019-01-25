@@ -1,0 +1,507 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "id": 1,
+    "links": [],
+    "panels": [
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "fill": 1,
+        "gridPos": {
+          "h": 6,
+          "w": 9,
+          "x": 0,
+          "y": 0
+        },
+        "id": 8,
+        "legend": {
+          "avg": false,
+          "current": false,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 1,
+        "links": [],
+        "nullPointMode": "null",
+        "percentage": false,
+        "pointradius": 5,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "Ethernet traffic on AP",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "Cisco-IOS-XE-wireless-access-point-oper:access-point-oper-data/ethernet-if-stats",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "rx-total-bytes"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [
+                    3
+                  ],
+                  "type": "top"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "wtp-mac",
+                "operator": "=",
+                "value": "[0 163 142 67 217 64]"
+              },
+              {
+                "condition": "AND",
+                "key": "if-index",
+                "operator": "=",
+                "value": "0"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Ethernet traffic on AP",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "InfluxDB",
+        "fill": 3,
+        "gridPos": {
+          "h": 6,
+          "w": 8,
+          "x": 9,
+          "y": 0
+        },
+        "id": 2,
+        "legend": {
+          "alignAsTable": false,
+          "avg": false,
+          "current": false,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 3,
+        "links": [],
+        "nullPointMode": "null",
+        "percentage": false,
+        "pointradius": 5,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "Client RSSI",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "Cisco-IOS-XE-wireless-client-oper:client-oper-data/traffic-stats",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "most-recent-rssi"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [
+                    3
+                  ],
+                  "type": "bottom"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "ms-mac-address",
+                "operator": "=",
+                "value": "[240 24 152 101 173 99]"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Client RSSI",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "content": "<button class=\"btn btn-success\" onclick=\"start_ap1()\">Start AP1</button>\n<button class=\"btn btn-danger\" onclick=\"stop_ap1()\">Stop AP1</button>\n<hr>\n<button class=\"btn btn-success\" onclick=\"start_ap2()\">Start AP2</button>\n<button class=\"btn btn-danger\" onclick=\"stop_ap2()\">Stop AP2</button>\n\n<script>function start_ap1() {\n  var xhttp = new XMLHttpRequest();\n  xhttp.onreadystatechange = function() {\n    console.log(\"State change!. Ready=%o status=%o\", this.readyState, this.status);\n    if (this.readyState == 4 && this.status == 200) {\n      alert(\"JSON: \"+this.responseText)\n    }\n  }\n  var url = \"http://\"+window.location.hostname+\":4000/start_ap1\";\n  console.log(\"Sending UP to \"+ url);\n  xhttp.open(\"POST\", url, true);\n  xhttp.send();\n\n}\n</script>\n\n<script>function stop_ap1() {\n  var xhttp = new XMLHttpRequest();\n  xhttp.onreadystatechange = function() {\n    console.log(\"State change!. Ready=%o status=%o\", this.readyState, this.status);\n    if (this.readyState == 4 && this.status == 200) {\n      alert(\"JSON: \"+this.responseText)\n    }\n  }\n  var url = \"http://\"+window.location.hostname+\":4000/stop_ap1\"\n\n  xhttp.open(\"POST\", url, true);\n  xhttp.send();\n\n}\n</script>\n<script>function start_ap2() {\n  var xhttp = new XMLHttpRequest();\n  xhttp.onreadystatechange = function() {\n    console.log(\"State change!. Ready=%o status=%o\", this.readyState, this.status);\n    if (this.readyState == 4 && this.status == 200) {\n      alert(\"JSON: \"+this.responseText)\n    }\n  }\n  var url = \"http://\"+window.location.hostname+\":4000/start_ap2\"\n\n  xhttp.open(\"POST\", url, true);\n  xhttp.send();\n\n}\n</script>\n\n<script>function stop_ap2() {\n  var xhttp = new XMLHttpRequest();\n  xhttp.onreadystatechange = function() {\n    console.log(\"State change!. Ready=%o status=%o\", this.readyState, this.status);\n    if (this.readyState == 4 && this.status == 200) {\n      alert(\"JSON: \"+this.responseText)\n    }\n  }\n  var url = \"http://\"+window.location.hostname+\":4000/stop_ap2\"\n\n  xhttp.open(\"POST\", url, true);\n  xhttp.send();\n\n}\n</script>\n",
+        "gridPos": {
+          "h": 4,
+          "w": 4,
+          "x": 17,
+          "y": 0
+        },
+        "id": 4,
+        "links": [],
+        "mode": "html",
+        "title": "Radio control",
+        "type": "text"
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "fill": 1,
+        "gridPos": {
+          "h": 6,
+          "w": 9,
+          "x": 0,
+          "y": 6
+        },
+        "id": 6,
+        "legend": {
+          "avg": false,
+          "current": false,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 1,
+        "links": [],
+        "nullPointMode": "null",
+        "percentage": false,
+        "pointradius": 5,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "Radio channel 2.4",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "Cisco-IOS-XE-wireless-access-point-oper:access-point-oper-data/radio-oper-data",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "phy-ht-cfg__cfg-data__curr-freq"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [
+                    3
+                  ],
+                  "type": "top"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "wtp-mac",
+                "operator": "=",
+                "value": "[0 163 142 67 217 64]"
+              },
+              {
+                "condition": "AND",
+                "key": "radio-slot-id",
+                "operator": "=",
+                "value": "0"
+              }
+            ]
+          },
+          {
+            "alias": "Radio channel 5",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "Cisco-IOS-XE-wireless-access-point-oper:access-point-oper-data/radio-oper-data",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "phy-ht-cfg__cfg-data__curr-freq"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [
+                    3
+                  ],
+                  "type": "top"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "wtp-mac",
+                "operator": "=",
+                "value": "[0 163 142 67 217 64]"
+              },
+              {
+                "condition": "AND",
+                "key": "radio-slot-id",
+                "operator": "=",
+                "value": "1"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Radio channels",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      }
+    ],
+    "refresh": false,
+    "schemaVersion": 16,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": []
+    },
+    "time": {
+      "from": "now-1h",
+      "to": "now"
+    },
+    "timepicker": {
+      "refresh_intervals": [
+        "5s",
+        "10s",
+        "30s",
+        "1m",
+        "5m",
+        "15m",
+        "30m",
+        "1h",
+        "2h",
+        "1d"
+      ],
+      "time_options": [
+        "5m",
+        "15m",
+        "1h",
+        "6h",
+        "12h",
+        "24h",
+        "2d",
+        "7d",
+        "30d"
+      ]
+    },
+    "timezone": "",
+    "title": "Cisco Wireless",
+    "uid": "jd5OzuQik",
+    "version": 5
+  }
