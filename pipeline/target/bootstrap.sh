@@ -7,3 +7,4 @@ while [ $? -ne 0 ]; do
 done
 
 /pipeline/bin/pipeline -pem /app/id_rsa -config /pipeline/pipeline.conf_REWRITTEN
+sleep 1000000

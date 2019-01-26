@@ -1,5 +1,5 @@
 FROM ubuntu:16.04
-RUN apt-get update && apt-get install -y influxdb-client vim
+RUN apt-get update && apt-get install -y influxdb-client vim less
 RUN mkdir /pipeline
 COPY pipeline_data /pipeline
 COPY json /data
