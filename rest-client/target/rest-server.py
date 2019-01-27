@@ -56,7 +56,8 @@ def post_util(ap, tag):
 class startAP1(Resource):
     def post(self):
         #ap = "00:a6:ca:6c:d5:90"
-        ap = "00:2c:c8:8b:72:d0"
+        #ap = "00:2c:c8:8b:72:d0"
+        ap = "2c:33:11:85:fe:40"
         tag = "radioup"
         print("Start AP1: {}".format(ap))
         return post_util(ap, tag)
@@ -64,7 +65,8 @@ class startAP1(Resource):
 class stopAP1(Resource):
     def post(self):
         #ap = "00:a6:ca:6c:d5:90"
-        ap = "00:2c:c8:8b:72:d0"
+        #ap = "00:2c:c8:8b:72:d0"
+        ap = "2c:33:11:85:fe:40"
         tag = "radiodown"
         print("Stop AP1: {}".format(ap))
         return post_util(ap, tag)
@@ -72,7 +74,8 @@ class stopAP1(Resource):
 class startAP2(Resource):
     def post(self):
         #ap = "f4:4e:05:43:34:54"
-        ap = "2c:33:11:85:fe:40"
+        #ap = "2c:33:11:85:fe:40"
+        ap = "58:ac:78:dc:f5:b0"
         tag = "radioup"
         print("Start AP1: {}".format(ap))
         return post_util(ap, tag)
@@ -80,7 +83,8 @@ class startAP2(Resource):
 class stopAP2(Resource):
     def post(self):
         #ap = "f4:4e:05:43:34:54"
-        ap = "2c:33:11:85:fe:40"
+        #ap = "2c:33:11:85:fe:40"
+        ap = "58:ac:78:dc:f5:b0"
         tag = "radiodown"
         print("Stop AP1: {}".format(ap))
         return post_util(ap, tag)
