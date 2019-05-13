@@ -20,7 +20,7 @@
 			]
 		}
 	},
-   {
+   	{
            "basepath" : "Cisco-IOS-XE-wireless-access-point-oper:access-point-oper-data/ethernet-if-stats",
            "spec" : {
                    "fields" : [
@@ -29,48 +29,69 @@
                            {"name" : "rx-total-bytes"}
                    ]
            }
-   },
-   {
+   	},
+   	{
                "basepath" : "Cisco-IOS-XE-wireless-client-oper:client-oper-data/traffic-stats",
                "spec" : {
                        "fields" : [
-                               {"name" : "ms-mac-address", "tag": true},
-                               {"name": "bytes-rx"},
-                				{"name": "bytes-tx"},
-                				{"name": "data-retries"},
-                				{"name": "mic-mismatch"},
-                				{"name": "mic-missing"},
-                				{"name": "most-recent-rssi"},
-                				{"name": "most-recent-snr"},
-                				{"name": "pkts-rx"},
-                				{"name": "pkts-tx"}
+				{"name" : "ms-mac-address", "tag": true},
+				{"name": "bytes-rx"},
+				{"name": "bytes-tx"},
+				{"name": "data-retries"},
+				{"name": "mic-mismatch"},
+				{"name": "mic-missing"},
+				{"name": "most-recent-rssi"},
+				{"name": "most-recent-snr"},
+				{"name": "pkts-rx"},
+				{"name": "pkts-tx"}
+		       ]
+		}
+	},					
+	{
+		"basepath" : "Cisco-IOS-XE-wireless-mobility-oper:mobility-oper-data/wlan-client-limit",
+		"spec" : {
+			"fields" : [
+				{"name" : "wlan-profile", "tag" : true},
+				{"name" : "curr-clients-count"}
+			]
+		}
+	},
+       {
+               "basepath" : "Cisco-IOS-XE-wireless-access-point-oper:access-point-oper-data/ethernet-if-stats",
+               "spec" : {
+                       "fields" : [
+				{"name" : "wtp-mac", "tag" : true},
+                               {"name" : "if-name", "tag" : true},
+			       {"name" : "if-index", "tag" : true},
+			       {"name" : "rx-pkts"},
+			       {"name" : "tx-pkts"}
                        ]
                }
-},
-{
-	"basepath" : "Cisco-IOS-XE-wireless-access-point-oper:access-point-oper-data/radio-oper-data",
-	"spec" : {
-		"fields" : [
-			{"name" : "radio-slot-id", "tag" : true},
-			{"name" : "radio-type"},
-			{"name" : "admin-state", "track" : true},
-			{"name" : "wtp-mac", "tag" : true},
-			{"name" : "phy-ht-cfg",
-				"fields" : [
-					{"name" : "cfg-data",
-						"fields" : [
-							{"name" : "chan-width"},
-							{"name" : "curr-freq"}
-						]
-					}
-				]
-			}
-		]
-	}
-},
-{
-	"basepath" : "Cisco-IOS-XE-wireless-client-oper:client-oper-data/global-stats",
-	"spec" : {
+	},
+	{
+		"basepath" : "Cisco-IOS-XE-wireless-access-point-oper:access-point-oper-data/radio-oper-data",
+		"spec" : {
+			"fields" : [
+				{"name" : "radio-slot-id", "tag" : true},
+				{"name" : "radio-type"},
+				{"name" : "admin-state", "track" : true},
+				{"name" : "wtp-mac", "tag" : true},
+				{"name" : "phy-ht-cfg",
+					"fields" : [
+						{"name" : "cfg-data",
+							"fields" : [
+								{"name" : "chan-width"},
+								{"name" : "curr-freq"}
+							]
+						}
+					]
+				}
+			]
+		}
+	},
+	{
+		"basepath" : "Cisco-IOS-XE-wireless-client-oper:client-oper-data/global-stats",
+		"spec" : {
 		"fields" : [
 			{"name" : "session-stats",
 				"fields" : [
@@ -81,4 +102,3 @@
 	}
 }
 ]
-
