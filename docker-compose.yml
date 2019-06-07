@@ -28,6 +28,8 @@ services:
                 #image: fsedano/rest-client
                 ports:
                         - "4000:4000"
+                volumes:
+                        - ./rest-client/target:/app:delegated
 volumes:
         influxdb:
         running_pipeline_data:

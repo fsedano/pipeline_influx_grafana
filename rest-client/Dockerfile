@@ -1,17 +1,14 @@
 # docker run -ti -v `pwd`:/runapp -p 4000:4000 fsedano/rest-client sh
-FROM alpine:3.8
+FROM ubuntu:18.04
+RUN apt-get update && apt-get install -y python3 python3-pip wget
 
-RUN apk add --no-cache python3 && \
-    python3 -m ensurepip && \
-    rm -r /usr/lib/python*/ensurepip && \
-    pip3 install --upgrade pip setuptools && \
-    if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi && \
-    if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
-    rm -r /root/.cache
-
-RUN pip install flask flask_restful flask_cors requests
+RUN pip3 install flask flask_restful flask_cors requests netmiko
+RUN apt-get install -y git
 WORKDIR /app
+RUN git clone https://github.com/networktocode/ntc-templates.git
+ENV NET_TEXTFSM=/app/ntc-templates/templates/
 COPY target/rest-server.py /app
+
 #ENTRYPOINT [ "python", "rest-server.py" ]
-ENTRYPOINT [ "bash", "-c", "sleep 100000" ]
+ENTRYPOINT [ "/bin/sh", "-c", "sleep 100000" ]
 

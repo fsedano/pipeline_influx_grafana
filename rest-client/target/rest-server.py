@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_restful import Resource, Api, reqparse
 from flask_cors import CORS
-
+from netmiko import ConnectHandler
 import argparse
 import requests, json
 import sys
@@ -91,9 +91,29 @@ class stopAP2(Resource):
         print("Stop AP1: {}".format(ap))
         return post_util(ap, tag)
 
+class GetCLI(Resource):
+    def get(self):
+        cisco = {
+        'device_type': 'cisco_ios',
+        'host': '10.51.65.167',
+        'username': 'lab',
+        'password': 'lab'
+        }
+        #data = [{'intf': 'GigabitEthernet1', 'ipaddr': '10.0.0.1', 'status': 'up', 'proto': 'up'},
+        #{'intf': 'GigabitEthernet2', 'ipaddr': '11.0.0.1', 'status': 'up', 'proto': 'up'}]
+        #print(data)
+        #return data
+        net_connect = ConnectHandler(**cisco)
+        output = net_connect.send_command("show ip int brief", use_textfsm=True)
+        net_connect.disconnect()
+        print(f"Output is {output}")
+        return output
+
 api.add_resource(startAP1, '/start_ap1')
 api.add_resource(stopAP1, '/stop_ap1')
 api.add_resource(startAP2, '/start_ap2')
 api.add_resource(stopAP2, '/stop_ap2')
+api.add_resource(GetCLI, '/metrics')
 
 app.run(host='0.0.0.0', port='4000', debug=True)
+
