@@ -12,5 +12,6 @@ RUN apk add --no-cache python3 && \
 RUN pip install flask flask_restful flask_cors requests
 WORKDIR /app
 COPY target/rest-server.py /app
-ENTRYPOINT [ "python", "rest-server.py" ]
+#ENTRYPOINT [ "python", "rest-server.py" ]
+ENTRYPOINT [ "bash", "-c", "sleep 100000" ]
 

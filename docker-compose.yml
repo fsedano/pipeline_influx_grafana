@@ -24,8 +24,8 @@ services:
                 ports:
                         - "8088:8088"
         rest-client:
-                #build: rest-client
-                image: fsedano/rest-client
+                build: rest-client
+                #image: fsedano/rest-client
                 ports:
                         - "4000:4000"
 volumes:
