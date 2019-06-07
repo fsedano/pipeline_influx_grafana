@@ -1,0 +1,4 @@
+Value APCOUNT (\d+)
+
+Start
+  ^Number of APs: ${APCOUNT} -> Record
