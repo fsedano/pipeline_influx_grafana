@@ -13,11 +13,8 @@ services:
                 image: grafana/grafana
                 ports:
                         - "3000:3000"
-        pipeline:
-                #build: pipeline
-                image: fsedano/pipeline
-                volumes:
-                        - running_pipeline_data:/running_data
+        telegraf:
+                build: telegraf
                 ports:
                         - "57500:57500"
         yang-explorer:
