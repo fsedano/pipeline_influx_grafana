@@ -9,6 +9,6 @@ RUN git clone https://github.com/networktocode/ntc-templates.git
 ENV NET_TEXTFSM=/app/ntc-templates/templates/
 COPY target/rest-server.py /app
 
-#ENTRYPOINT [ "python", "rest-server.py" ]
-ENTRYPOINT [ "/bin/sh", "-c", "sleep 100000" ]
+ENTRYPOINT [ "python3", "rest-server.py" ]
+#ENTRYPOINT [ "/bin/sh", "-c", "sleep 100000" ]
 

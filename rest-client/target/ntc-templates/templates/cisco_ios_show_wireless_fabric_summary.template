@@ -1,0 +1,6 @@
+Value FABRIC_STATE (\w+)
+Value FABRIC_NODE_IP ([\d.]+)
+
+Start 
+  ^default-control-plane\s+${FABRIC_NODE_IP}\s+\w+\s+${FABRIC_STATE} -> Record
+

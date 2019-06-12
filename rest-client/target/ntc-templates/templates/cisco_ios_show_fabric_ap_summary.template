@@ -1,0 +1,4 @@
+Value FABRIC_APCOUNT (\d+)
+
+Start
+  ^Number of Fabric AP : ${FABRIC_APCOUNT} -> Record

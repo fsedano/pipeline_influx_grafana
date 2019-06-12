@@ -1,0 +1,14 @@
+Value WNCD0_5S (\d+)
+Value WNCD0_1M (\d+)
+Value WNCD0_5M (\d+)
+Value WNCD0_SIZE (\d+)
+Value WNCMGRD_5S (\d+)
+Value WNCMGRD_1M (\d+)
+Value WNCMGRD_5M (\d+)
+Value WNCMGRD_SIZE (\d+)
+
+
+Start
+  ^\s*\d+\s+\d+\s+${WNCMGRD_5S}%\s+${WNCMGRD_1M}%\s+${WNCMGRD_5M}%\s+\w\s+${WNCMGRD_SIZE}\s+wncmgrd 
+  ^\s*\d+\s+\d+\s+${WNCD0_5S}%\s+${WNCD0_1M}%\s+${WNCD0_5M}%\s+\w\s+${WNCD0_SIZE}\s+wncd_0  -> Record
+

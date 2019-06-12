@@ -1,0 +1,13 @@
+Value MAC ([0-9a-f]{4}\.[0-9a-f]{4}\.[0-9a-f]{4})
+Value SLOT (\d+)
+Value ADMIN_STATE (\w+)
+Value OPER_STATE (\w+)
+Value APNAME (\S+)
+Value WIDTH (\d+)
+
+
+Start
+  ^${APNAME}\s+${MAC}\s+${SLOT}\s+${ADMIN_STATE}\s+${OPER_STATE}\s+${WIDTH}\s+.* -> Record
+
+
+

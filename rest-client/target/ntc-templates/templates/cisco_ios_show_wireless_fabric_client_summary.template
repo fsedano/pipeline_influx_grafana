@@ -1,0 +1,7 @@
+Value WIRELESS_FABRICCLIENTCOUNT (\d+)
+
+
+Start
+  ^Number of Fabric Clients : ${WIRELESS_FABRICCLIENTCOUNT} -> Record
+  
+

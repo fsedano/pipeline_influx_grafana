@@ -6,4 +6,5 @@ RUN wget https://dl.influxdata.com/telegraf/releases/telegraf_1.11.0~rc1-1_amd64
 RUN apt install ./telegraf_1.11.0~rc1-1_amd64.deb
 COPY data/config/telegraf.conf /etc/telegraf/
 
-ENTRYPOINT [ "/bin/bash", "-c", "sleep 1000000" ]
+#ENTRYPOINT [ "/bin/bash", "-c", "sleep 1000000" ]
+ENTRYPOINT ["telegraf", "--debug"]

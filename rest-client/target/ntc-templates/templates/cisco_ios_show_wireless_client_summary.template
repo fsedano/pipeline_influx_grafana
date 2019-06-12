@@ -1,0 +1,7 @@
+Value WIRELESS_CLIENTCOUNT (\d+)
+Value WIRELESS_EXCLUDEDCLIENTCOUNT (\d+)
+
+Start
+  ^Number of Local Clients: ${WIRELESS_CLIENTCOUNT}
+  ^Number of Excluded Clients: ${WIRELESS_EXCLUDEDCLIENTCOUNT} -> Record
+
