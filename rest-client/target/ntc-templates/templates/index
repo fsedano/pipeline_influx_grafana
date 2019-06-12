@@ -141,6 +141,7 @@ cisco_ios_show_ipv6_interface_brief.template, .*, cisco_ios, sh[[ow]] ipv[[6]] i
 cisco_ios_show_ip_eigrp_neighbors.template, .*, cisco_ios, sh[[ow]] ip ei[[grp]] nei[[ghbors]]
 cisco_ios_show_ip_flow_toptalkers.template, .*, cisco_ios, sh[[ow]] ip fl[[ow]] top[[-talkers]]
 cisco_ios_show_ip_interface_brief.template, .*, cisco_ios, sh[[ow]] ip int[[erface]] br[[ief]]
+cisco_ios_show_ap_dot11_5_load_info.template, .*, cisco_ios, show ap dot11 5 load
 cisco_ios_show_ap_summary.template, .*, cisco_ios, sh[[ow]] ap sum[[mary]]
 cisco_ios_show_fabric_ap_summary.template, .*, cisco_ios, sh[[ow]] fabric ap sum[[mary]]
 cisco_ios_show_ap_dot11_summary.template, .*, cisco_ios, sh[[ow]] ap dot11 5 sum[[mary]]

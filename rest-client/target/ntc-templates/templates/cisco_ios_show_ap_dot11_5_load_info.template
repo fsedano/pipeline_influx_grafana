@@ -1,0 +1,12 @@
+Value AP_MAC_LOAD ([0-9a-f]{4}\.[0-9a-f]{4}\.[0-9a-f]{4})
+Value SLOT_LOAD (\d+)
+Value APNAME_LOAD (\S+)
+Value UTILIZATION_LOAD (\d+)
+Value CLIENTS_LOAD (\d+)
+
+
+Start
+  ^\s*${APNAME_LOAD}\s+${AP_MAC_LOAD}\s+${SLOT_LOAD}\s+${UTILIZATION_LOAD}\s+${CLIENTS_LOAD} -> Record
+
+
+
