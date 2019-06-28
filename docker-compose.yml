@@ -19,12 +19,6 @@ services:
                         - "57500:57500"
                 volumes:
                         - ./telegraf/data/config:/config
-        yang-explorer:
-                image: hellt/yangexplorer-docker
-                volumes:
-                        - yangdata:/yang-explorer/server/data
-                ports:
-                        - "8088:8088"
         rest-client:
                 build: rest-client
                 #image: fsedano/rest-client
