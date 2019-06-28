@@ -17,6 +17,8 @@ services:
                 build: telegraf
                 ports:
                         - "57500:57500"
+                volumes:
+                        - ./telegraf/data/config:/config
         yang-explorer:
                 image: hellt/yangexplorer-docker
                 volumes:
