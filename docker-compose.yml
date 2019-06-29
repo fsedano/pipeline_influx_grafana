@@ -16,6 +16,7 @@ services:
                         - GF_SMTP_ENABLED=true
                         - GF_SMTP_SKIP_VERIFY=true
                         - GF_SMTP_FROM_NAME=Lab monitor
+                        - GF_SERVER_ROOT_URL=http://epfl-lab-mon:3000/
                         - HTTP_PROXY=
                         - HTTPS_PROXY=
                         - http_proxy=
