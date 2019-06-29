@@ -5,8 +5,6 @@ services:
                 image: influxdb
                 volumes:
                         - influxdb:/var/lib/influxdb
-                ports:
-                        - "8086:8086"
                 environment:
                         - INFLUXDB_GRAPHITE_ENABLED=true
         grafana:
@@ -18,20 +16,22 @@ services:
                         - GF_SMTP_ENABLED=true
                         - GF_SMTP_SKIP_VERIFY=true
                         - GF_SMTP_FROM_NAME=Lab monitor
+                        - HTTP_PROXY=
+                        - HTTPS_PROXY=
+                        - http_proxy=
+                        - https_proxy=
         telegraf:
                 build: telegraf
                 ports:
                         - "57500:57500"
                 volumes:
                         - ./telegraf/data/config:/config
-        rest-client:
-                build: rest-client
-                #image: fsedano/rest-client
-                ports:
-                        - "4000:4000"
-                volumes:
-                        - ./rest-client/target:/app:delegated
+                environment:
+                        - HTTP_PROXY=
+                        - HTTPS_PROXY=
+                        - http_proxy=
+                        - https_proxy=
+
 volumes:
         influxdb:
         running_pipeline_data:
-        yangdata:

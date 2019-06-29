@@ -4,7 +4,8 @@ RUN apt-get update && apt-get install -y vim wget gnupg iputils-ping influxdb-cl
 WORKDIR /app
 RUN wget https://dl.influxdata.com/telegraf/releases/telegraf_1.11.0~rc1-1_amd64.deb
 RUN apt install ./telegraf_1.11.0~rc1-1_amd64.deb
+RUN apt-get install -y snmp
 COPY data/config/telegraf.conf /etc/telegraf/
 
-ENTRYPOINT [ "/bin/bash", "-c", "sleep 1000000" ]
-#ENTRYPOINT ["telegraf", "--debug"]
+#ENTRYPOINT [ "/bin/bash", "-c", "sleep 1000000" ]
+ENTRYPOINT ["telegraf", "--debug"]
