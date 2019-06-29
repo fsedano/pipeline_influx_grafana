@@ -20,6 +20,8 @@ services:
                         - HTTPS_PROXY=
                         - http_proxy=
                         - https_proxy=
+                volumes:
+                        - grafana:/var/lib/grafana
         telegraf:
                 build: telegraf
                 ports:
